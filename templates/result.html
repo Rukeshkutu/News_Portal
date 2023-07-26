@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="min-height: 100vh;">
+  <div
+  style="
+    font-size: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  "
+>
+  Results
+</div>
+<div class="vstack">
+  <div
+    class="card mb-3 w-75"
+    style="
+      margin: 0 auto;
+      border: none;
+      
+    "
+  >
+  {% if query%}
+  <h3> {{query}}</h3>
+  {%endif%}
+    {% for news in newss %}
+
+    <div class="card-deck"  style="display: flex; gap: 20px; flex-wrap: wrap;">
+      <a href="{% url 'detail_page' news.id %}">
+      <img
+      src="{{news.image.url}}"
+      class="card-img-top"
+        style="max-width: 250px; max-height: 200px"
+      />
+      </a>
+      <a href="{% url 'detail_page' news.id %}" style="text-decoration: none; color: black;">
+      <div class="card-body" style="width: 500px;">
+        <!-- <h2 class="card-title">{{news.name}}</h2> -->
+        <h3 class="card-text">{{news.title}}</h3>
+        <p class="card-text">{{news.description|truncatewords:30}}</p>
+      </div>
+      </a>
+    </div>
+
+{% endfor %}
+  </div>
+</div>
+</div>   
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+
+    <div class="vstack">
+      <div
+        class="card p-3"
+        style="       
+          margin: 0 auto;
+          border-radius: 8px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+            rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        "
+      >
+        {% for new in news %}
+
+        <div class="card-deck" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <a href="{% url 'detail_page' new.id %}">
+          <img
+            src="{{new.image.url}}"
+            class="card-img-top"
+            style="max-width: 250px; max-height: 200px"
+          />
+          </a>
+          <a href="{% url 'detail_page' new.id %}" style="text-decoration: none; color: black;">
+
+          <div class="card-body" style="width: 500px;" >
+            <h2 class="card-title" style="text-decoration: none;">{{new.title}}</h2>
+            <p class="card-text" style="text-decoration: none;">{{new.description|truncatewords:30}}</p>
+          </div>
+        </a>
+        </div>
+
+ {% endfor %}
+      </div>
+    </div>
+    <br>
+
+  {% endblock %}
